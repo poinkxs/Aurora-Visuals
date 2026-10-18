@@ -21,11 +21,13 @@ public final class NinePatchAtlas {
             // Заполнение текстурного атласа скруглений и градиентов
             for (int x = 0; x < 64; x++) {
                 for (int y = 0; y < 64; y++) {
-                    image.setColor(x, y, 0xFFFFFFFF);
+                    image.setColorArgb(x, y, 0xFFFFFFFF);
                 }
             }
             NativeImageBackedTexture texture = new NativeImageBackedTexture(image);
-            atlasId = MinecraftClient.getInstance().getTextureManager().registerDynamicTexture("aurora_atlas", texture);
+            
+            // Безопасная регистрация текстуры для Minecraft 1.21.4
+            atlasId = MinecraftClient.getInstance().getTextureManager().registerTexture("aurora_atlas", texture);
             initialized = true;
         } catch (Exception e) {
             AuroraVisualsClient.LOGGER.error("[Aurora Visuals] Ошибка инициализации NinePatchAtlas", e);
