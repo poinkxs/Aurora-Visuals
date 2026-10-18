@@ -1,18 +1,16 @@
 package com.aurora.visuals;
 
-import com.aurora.visuals.config.ConfigManager;
+import com.aurora.visuals.core.AuroraLang;
 import com.aurora.visuals.core.LiteModeManager;
 import com.aurora.visuals.core.SlowTickUpdater;
+import com.aurora.visuals.hud.HudManager;
 import com.aurora.visuals.module.ModuleManager;
-import com.aurora.visuals.ui.render.NinePatchAtlas;
 import com.aurora.visuals.ui.screen.ClickGuiScreen;
-import com.aurora.visuals.ui.screen.HudEditorScreen;
 import com.aurora.visuals.ui.theme.ThemeManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
@@ -20,68 +18,64 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AuroraVisualsClient implements ClientModInitializer {
-
     public static final String MOD_ID = "aurora";
-    public static final String MOD_NAME = "Aurora Visuals";
-    public static final String MOD_VERSION = "1.0.0";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    public static KeyBinding openGuiKey;
-    public static KeyBinding openHudEditorKey;
+    private static KeyBinding clickGuiKey;
     public static KeyBinding zoomKey;
+    private static boolean isZoomingState = false;
 
     @Override
     public void onInitializeClient() {
-        LOGGER.info("[Aurora Visuals] Initializing v{}...", MOD_VERSION);
+        LOGGER.info("[Aurora Visuals] Инициализация клиентской части мода...");
 
-        LiteModeManager.detectEnvironment();
+        // Инициализация менеджеров
         ThemeManager.init();
         ModuleManager.init();
-        ConfigManager.init();
+        HudManager.init();
 
-        openGuiKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "aurora.key.open_gui",
+        // Регистрация клавиши открытия ClickGUI на цифру "0" (GLFW_KEY_0)
+        clickGuiKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                "key.aurora.clickgui",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_RIGHT_SHIFT,
-                "Aurora Visuals"
+                GLFW.GLFW_KEY_0,
+                "category.aurora.visuals"
         ));
 
-        openHudEditorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "aurora.key.hud_editor",
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_H,
-                "Aurora Visuals"
-        ));
-
+        // Регистрация клавиши зума на "C"
         zoomKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "aurora.key.zoom",
+                "key.aurora.zoom",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_C,
-                "Aurora Visuals"
+                "category.aurora.visuals"
         ));
 
+        // Обработка нажатий клавиш в каждом тике игры
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (client.player == null || client.world == null) return;
+            if (client.player == null) return;
 
-            SlowTickUpdater.onClientTick(client);
-
-            while (openGuiKey.wasPressed()) {
+            // Открытие ClickGUI по нажатию клавиши 0
+            while (clickGuiKey.wasPressed()) {
                 client.setScreen(new ClickGuiScreen());
             }
-            while (openHudEditorKey.wasPressed()) {
-                client.setScreen(new HudEditorScreen());
-            }
+
+            // Отслеживание зума
+            isZoomingState = zoomKey.isPressed();
         });
 
-        HudRenderCallback.EVENT.register((drawContext, renderTickCounter) -> {
-            MinecraftClient client = MinecraftClient.getInstance();
-            if (client.player == null || client.options.hudHidden) return;
-            if (client.currentScreen instanceof HudEditorScreen) return;
-
-            NinePatchAtlas.ensureInitialized();
-
-            float tickDelta = renderTickCounter.getTickDelta(true);
-            ModuleManager.renderHudModules(drawContext, tickDelta);
+        // Отрисовка HUD элементов поверх экрана игры
+        HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
+            HudManager.renderAll(drawContext, tickDelta);
         });
+
+        // Запуск фоновых задач
+        SlowTickUpdater.init();
+        LiteModeManager.init();
+
+        LOGGER.info("[Aurora Visuals] Клиент успешно инициализирован!");
+    }
+
+    public static boolean isZooming() {
+        return isZoomingState;
     }
 }
