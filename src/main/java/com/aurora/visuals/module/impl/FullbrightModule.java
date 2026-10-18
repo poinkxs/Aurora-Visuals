@@ -9,12 +9,10 @@ public class FullbrightModule extends Module {
         super("aurora.module.fullbright", "aurora.module.fullbright.desc", Category.RENDER);
     }
 
-    @Override
     public void onEnable() {
         active = true;
     }
 
-    @Override
     public void onDisable() {
         active = false;
     }
