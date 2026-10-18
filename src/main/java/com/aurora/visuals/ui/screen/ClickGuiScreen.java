@@ -39,8 +39,9 @@ public class ClickGuiScreen extends Screen {
         
         Theme theme = ThemeManager.getCurrentTheme();
         
-        // Затемнение фона
-        context.fill(0, 0, this.width, this.height, (int)((openAnimation * 150) << 24));
+        // Затемнение фона (исправлено во избежание ошибок типов)
+        int alpha = (int)(openAnimation * 150);
+        context.fill(0, 0, this.width, this.height, (alpha << 24));
 
         int guiWidth = 540;
         int guiHeight = 320;
