@@ -1,9 +1,7 @@
 package com.aurora.visuals;
 
-import com.aurora.visuals.core.AuroraLang;
 import com.aurora.visuals.core.LiteModeManager;
 import com.aurora.visuals.core.SlowTickUpdater;
-import com.aurora.visuals.hud.HudManager;
 import com.aurora.visuals.module.ModuleManager;
 import com.aurora.visuals.ui.screen.ClickGuiScreen;
 import com.aurora.visuals.ui.theme.ThemeManager;
@@ -32,7 +30,6 @@ public class AuroraVisualsClient implements ClientModInitializer {
         // Инициализация менеджеров
         ThemeManager.init();
         ModuleManager.init();
-        HudManager.init();
 
         // Регистрация клавиши открытия ClickGUI на цифру "0" (GLFW_KEY_0)
         clickGuiKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
@@ -61,11 +58,6 @@ public class AuroraVisualsClient implements ClientModInitializer {
 
             // Отслеживание зума
             isZoomingState = zoomKey.isPressed();
-        });
-
-        // Отрисовка HUD элементов поверх экрана игры
-        HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
-            HudManager.renderAll(drawContext, tickDelta);
         });
 
         // Запуск фоновых задач
