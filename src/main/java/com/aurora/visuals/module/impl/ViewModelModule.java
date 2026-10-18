@@ -9,7 +9,7 @@ public class ViewModelModule extends Module {
     public static float scaleZ = 1.0f;
 
     public ViewModelModule() {
-        super("aurora.module.viewmodel", "aurora.module.viewmodel.desc", Category.RENDER);
+        super("aurora.module.viewmodel", "aurora.module.viewmodel.desc", Module.Category.RENDER);
     }
 
     public void onEnable() {
