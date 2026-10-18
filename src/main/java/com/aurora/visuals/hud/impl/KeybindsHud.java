@@ -30,8 +30,8 @@ public class KeybindsHud extends HudModule {
         context.fill(x, y, x + w, y + 2, theme.getAccentStart());
 
         context.drawText(tr, AuroraLang.tr("aurora.module.keybinds"), x + 6, y + 6, theme.getTextColor(), true);
-        context.drawText(tr, "ClickGUI: [RSHIFT]", x + 6, y + 20, theme.getSecondaryTextColor(), true);
-        context.drawText(tr, "HUD Editor: [H]", x + 6, y + 32, theme.getSecondaryTextColor(), true);
-        context.drawText(tr, "Zoom: [C]", x + 6, y + 44, theme.getSecondaryTextColor(), true);
+        context.drawText(tr, "ClickGUI: [0]", x + 6, y + 20, 0xFFAAAAAA, true);
+        context.drawText(tr, "HUD Editor: [H]", x + 6, y + 32, 0xFFAAAAAA, true);
+        context.drawText(tr, "Zoom: [C]", x + 6, y + 44, 0xFFAAAAAA, true);
     }
 }
