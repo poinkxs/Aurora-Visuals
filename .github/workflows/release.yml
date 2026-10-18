@@ -1,16 +1,16 @@
-name: Release Mod
+name: Release Aurora Visuals
 
 on:
   push:
     tags:
       - 'v*'
 
-permissions:
-  contents: write
-
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -22,10 +22,11 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Build Mod
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
-        with:
-          arguments: build
+
+      - name: Build with Gradle
+        run: gradle build
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -35,3 +36,4 @@ jobs:
             !build/libs/*-sources.jar
             !build/libs/*-dev.jar
           generate_release_notes: true
+          
