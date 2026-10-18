@@ -6,7 +6,7 @@ public class WorldParticlesModule extends Module {
     private static boolean active = false;
 
     public WorldParticlesModule() {
-        super("aurora.module.particles", "aurora.module.particles.desc", Category.RENDER);
+        super("aurora.module.particles", "aurora.module.particles.desc", Module.Category.RENDER);
     }
 
     public void onEnable() {
