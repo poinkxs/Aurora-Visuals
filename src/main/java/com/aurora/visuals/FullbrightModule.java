@@ -5,6 +5,6 @@ import com.aurora.visuals.module.Module;
 
 public class FullbrightModule extends Module {
     public FullbrightModule() {
-        super("Fullbright", "aurora.module.fullbright", Category.VISUALS);
+        super("aurora.module.fullbright", "aurora.module.fullbright.desc", Category.VISUALS);
     }
 }
