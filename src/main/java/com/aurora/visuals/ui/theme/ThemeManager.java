@@ -1,8 +1,15 @@
 package com.aurora.visuals.ui.theme;
 
 public final class ThemeManager {
-    // Передаем 7 аргументов под конструктор Theme (или используем конструктор по умолчанию)
-    private static Theme currentTheme = new Theme("Aurora Dark", 0xFF1A1A2E, 0xFF00F2FE, 0xFF4FACFE, 0xFFFFFFFF, 0xFF000000, 0xFFAAAAAA);
+    private static Theme currentTheme = new Theme(
+        "Aurora Dark",
+        0xFF0B0B14, // Фон
+        0xFF11111A, // Панель
+        0xFF00F2FE, // Акцент 1
+        0xFF4FACFE, // Акцент 2
+        0xFFFFFFFF, // Основной текст (Белый)
+        0xFFAAAAAA  // Доп. текст (Серый)
+    );
 
     private ThemeManager() {}
 
