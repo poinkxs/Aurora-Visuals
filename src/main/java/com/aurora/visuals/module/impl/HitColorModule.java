@@ -5,18 +5,16 @@ import com.aurora.visuals.module.Module;
 public class HitColorModule extends Module {
     private static boolean active = false;
     private static boolean useCustomColor = false;
-    private static int customColor = 0xFFFF0000; // По умолчанию базовый красный
+    private static int customColor = 0xFFFF0000;
 
     public HitColorModule() {
         super("aurora.module.hitcolor", "aurora.module.hitcolor.desc", Category.RENDER);
     }
 
-    @Override
     public void onEnable() {
         active = true;
     }
 
-    @Override
     public void onDisable() {
         active = false;
     }
