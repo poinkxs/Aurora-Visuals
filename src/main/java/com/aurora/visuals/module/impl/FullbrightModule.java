@@ -6,7 +6,7 @@ public class FullbrightModule extends Module {
     private static boolean active = false;
 
     public FullbrightModule() {
-        super("aurora.module.fullbright", "aurora.module.fullbright.desc", Category.RENDER);
+        super("aurora.module.fullbright", "aurora.module.fullbright.desc", Module.Category.RENDER);
     }
 
     public void onEnable() {
