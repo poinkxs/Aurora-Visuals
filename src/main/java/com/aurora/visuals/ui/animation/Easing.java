@@ -12,8 +12,8 @@ public final class Easing {
     }
 
     public static float easeOutBack(float x) {
-        const float c1 = 1.70158f;
-        const float c3 = c1 + 1f;
+        final float c1 = 1.70158f;
+        final float c3 = c1 + 1f;
         return 1f + c3 * (float) Math.pow(x - 1f, 3) + c1 * (float) Math.pow(x - 1f, 2);
     }
 
