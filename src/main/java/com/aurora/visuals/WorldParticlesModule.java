@@ -5,6 +5,6 @@ import com.aurora.visuals.module.Module;
 
 public class WorldParticlesModule extends Module {
     public WorldParticlesModule() {
-        super("WorldParticles", "aurora.module.worldparticles", Category.VISUALS);
+        super("aurora.module.particles", "aurora.module.particles.desc", Category.VISUALS);
     }
 }
