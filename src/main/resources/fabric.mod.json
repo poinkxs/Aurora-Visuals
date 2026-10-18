@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "aurora",
+  "version": "${version}",
+  "name": "Aurora Visuals",
+  "description": "Modern aesthetic HUD & Visuals mod inspired by Pulse, Soup and Plintus Visuals. Optimized for PC & Mobile launchers.",
+  "authors": [
+    "poinkxs"
+  ],
+  "contact": {
+    "homepage": "https://github.com/poinkxs/Aurora-Visuals",
+    "sources": "https://github.com/poinkxs/Aurora-Visuals"
+  },
+  "license": "MIT",
+  "icon": "assets/aurora/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.aurora.visuals.AuroraVisualsClient"
+    ]
+  },
+  "mixins": [
+    "aurora.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": ">=1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "sodium": "*",
+    "iris": "*",
+    "modmenu": "*"
+  }
+}
