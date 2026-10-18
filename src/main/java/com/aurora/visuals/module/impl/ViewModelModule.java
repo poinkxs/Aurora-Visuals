@@ -12,12 +12,10 @@ public class ViewModelModule extends Module {
         super("aurora.module.viewmodel", "aurora.module.viewmodel.desc", Category.RENDER);
     }
 
-    @Override
     public void onEnable() {
         active = true;
     }
 
-    @Override
     public void onDisable() {
         active = false;
     }
