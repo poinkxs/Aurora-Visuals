@@ -9,12 +9,10 @@ public class CrosshairModule extends Module {
         super("aurora.module.crosshair", "aurora.module.crosshair.desc", Category.RENDER);
     }
 
-    @Override
     public void onEnable() {
         active = true;
     }
 
-    @Override
     public void onDisable() {
         active = false;
     }
