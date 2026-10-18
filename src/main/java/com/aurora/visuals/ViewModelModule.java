@@ -5,6 +5,6 @@ import com.aurora.visuals.module.Module;
 
 public class ViewModelModule extends Module {
     public ViewModelModule() {
-        super("ViewModel", "aurora.module.viewmodel", Category.VISUALS);
+        super("aurora.module.viewmodel", "aurora.module.viewmodel.desc", Category.VISUALS);
     }
 }
