@@ -8,7 +8,7 @@ public class HitColorModule extends Module {
     private static int customColor = 0xFFFF0000;
 
     public HitColorModule() {
-        super("aurora.module.hitcolor", "aurora.module.hitcolor.desc", Category.RENDER);
+        super("aurora.module.hitcolor", "aurora.module.hitcolor.desc", Module.Category.RENDER);
     }
 
     public void onEnable() {
