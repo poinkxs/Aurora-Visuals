@@ -6,7 +6,7 @@ public class CrosshairModule extends Module {
     private static boolean active = false;
 
     public CrosshairModule() {
-        super("aurora.module.crosshair", "aurora.module.crosshair.desc", Category.RENDER);
+        super("aurora.module.crosshair", "aurora.module.crosshair.desc", Module.Category.RENDER);
     }
 
     public void onEnable() {
