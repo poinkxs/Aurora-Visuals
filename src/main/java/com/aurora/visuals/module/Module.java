@@ -20,8 +20,24 @@ public class Module {
     public Category getCategory() { return category; }
     
     public boolean isEnabled() { return enabled; }
-    public void setEnabled(boolean enabled) { this.enabled = enabled; }
-    public void toggle() { this.enabled = !this.enabled; }
+
+    public void setEnabled(boolean enabled) {
+        if (this.enabled != enabled) {
+            this.enabled = enabled;
+            if (enabled) {
+                onEnable();
+            } else {
+                onDisable();
+            }
+        }
+    }
+
+    public void toggle() {
+        setEnabled(!this.enabled);
+    }
+
+    public void onEnable() {}
+    public void onDisable() {}
 
     public int getKeybind() { return keybind; }
     public void setKeybind(int keybind) { this.keybind = keybind; }
