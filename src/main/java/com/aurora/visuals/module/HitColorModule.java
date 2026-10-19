@@ -9,12 +9,10 @@ public class HitColorModule extends Module {
         super("aurora.module.hitcolor", "aurora.module.hitcolor.desc", Category.VISUALS);
     }
 
-    @Override
     public void onEnable() {
         active = true;
     }
 
-    @Override
     public void onDisable() {
         active = false;
     }
