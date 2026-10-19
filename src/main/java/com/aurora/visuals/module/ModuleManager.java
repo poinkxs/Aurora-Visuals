@@ -1,7 +1,7 @@
 package com.aurora.visuals.module;
 
+import com.aurora.visuals.ZoomModule;
 import com.aurora.visuals.hud.impl.*;
-import com.aurora.visuals.*;
 import net.minecraft.client.gui.DrawContext;
 
 import java.util.ArrayList;
@@ -12,7 +12,6 @@ public final class ModuleManager {
     private static final List<HudModule> HUD_MODULES = new ArrayList<>();
 
     public static void init() {
-        // Регистрация HUD модулей
         registerHud(new WatermarkHud());
         registerHud(new ArrayListHud());
         registerHud(new InfoBlockHud());
@@ -26,7 +25,6 @@ public final class ModuleManager {
         registerHud(new CustomHotbarHud());
         registerHud(new CustomCrosshairHud());
 
-        // Регистрация обычных и визуальных модулей
         MODULES.add(new ZoomModule());
         MODULES.add(new FullbrightModule());
         MODULES.add(new ViewModelModule());
@@ -37,7 +35,7 @@ public final class ModuleManager {
     private static void registerHud(HudModule module) {
         MODULES.add(module);
         HUD_MODULES.add(module);
-        module.setEnabled(true); // По умолчанию включены для демонстрации
+        module.setEnabled(true);
     }
 
     public static List<Module> getModules() { return MODULES; }
