@@ -7,12 +7,10 @@ public class WorldParticlesModule extends Module {
         super("aurora.module.particles", "aurora.module.particles.desc", Category.VISUALS);
     }
 
-    @Override
     public void onEnable() {
         active = true;
     }
 
-    @Override
     public void onDisable() {
         active = false;
     }
